@@ -34,8 +34,8 @@ Follow these steps to set up your development environment:
    cd Meet-your-past-self
    
 #### Navigate to the Backend Folder and Install Dependencies
-   cd future-you-b
-   npm install
+      cd future-you-b
+      npm install
    
 #### Create a .env File for the Backend
 In the future-you-b folder, create a new file named .env and add the following lines:
