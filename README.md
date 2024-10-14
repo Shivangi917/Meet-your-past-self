@@ -33,9 +33,11 @@ Follow these steps to set up your development environment:
    git clone https://github.com/Shivangi917/Meet-your-past-self.git
    cd Meet-your-past-self
    
-#### Navigate to the backend folder and install dependencies
-cd future-you-b
-npm install
+   #### Navigate to the backend folder and install dependencies
+      ```bash
+      cd future-you-b
+      npm install
+
 Create a .env file for the backend
 
 In the future-you-b folder, create a new file named .env. Add the following lines to it:
