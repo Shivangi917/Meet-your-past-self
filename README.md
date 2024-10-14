@@ -65,8 +65,15 @@ Navigate to the Frontend Folder
       cd Meet-your-past-self/future-you
 
 #### Install Frontend Dependencies
-   npm install
-   Start the Frontend Development Server
+      npm install
+Start the Frontend Development Server
 
 #### In the frontend folder, run the following command:
-   npm run dev
+      npm run dev
+
+
+##### For backend 
+Go to http://localhost:3000/
+
+##### For frontend 
+Go to http://localhost:5173/
