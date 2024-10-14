@@ -5,6 +5,7 @@ const Homepage = () => {
   const [message, setMessage] = useState('');
   const [email, setEmail] = useState('');
   const [sendDate, setSendDate] = useState('');
+  const [messageScheduled, setMessageScheduled] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -13,6 +14,11 @@ const Homepage = () => {
     try{
         const response = await axios.post('http://localhost:3000/schedule', formData);
         console.log(response.data);
+        setMessageScheduled(true);
+
+        setMessage('');
+        setEmail('');
+        setSendDate('');
 
     } catch (error) {
         console.error('Error scheduling email', error);
@@ -56,6 +62,9 @@ const Homepage = () => {
             Schedule Message
           </button>
         </form>
+        {messageScheduled && (
+          <p className="text-pink-50 text-center mt-4">Your message has been scheduled!</p>
+        )}
       </div>
     </div>
   );
