@@ -32,3 +32,53 @@ Follow these steps to set up your development environment:
    ```bash
    git clone https://github.com/Shivangi917/Meet-your-past-self.git
    cd Meet-your-past-self
+Navigate to the Backend Folder and Install Dependencies
+
+   ```bash
+   cd future-you-b
+   npm install
+Create a .env File for the Backend
+
+In the future-you-b folder, create a new file named .env and add the following lines:
+
+   ```bash
+   EMAIL_USER=your_email@gmail.com
+   EMAIL_PASS=your_app_password
+Example of the .env file:
+
+   ```bash
+   EMAIL_USER=abc@gmail.com
+   EMAIL_PASS=your-16-character-app-password
+To Generate an App Password:
+
+Go to your Google Account settings.
+Navigate to Security and enable 2-Step Verification if you haven't already.
+Under Signing in to Google, find App passwords and create a new app password.
+Use the generated 16-character password in the EMAIL_PASS field.
+Start the Backend Server
+
+In the same terminal, run the following command to start the backend server using Nodemon:
+
+bash
+Copy code
+nodemon index.js
+Part 2: Frontend Setup
+Navigate to the Frontend Folder
+
+Open a new terminal window, navigate to the project root, and then to the frontend folder:
+
+bash
+Copy code
+cd Meet-your-past-self/future-you
+Install Frontend Dependencies
+
+bash
+Copy code
+npm install
+Start the Frontend Development Server
+
+In the frontend folder, run the following command:
+
+bash
+Copy code
+npm run dev
