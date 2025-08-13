@@ -1,25 +1,16 @@
+require('dotenv').config();
 const express = require('express');
-const dotenv = require('dotenv');
 const connectDB = require('./config/db');
-const dataRoute = require('./routes/dataRoute');
-const cors = require('cors');  // Import CORS
-
-dotenv.config();
-
-const app = express();
-const port = 3000;
-
-app.use(cors());  // Enable CORS for all routes
-app.use(express.json());
+const messageRoutes = require('./routes/message.route');
 
 connectDB();
 
-app.use('/', dataRoute);
+const app = express();
+app.use(express.json());
 
-app.get('/', (req, res) => {
-    res.send("hello");
-});
+app.use('/api/messages', messageRoutes);
 
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
-});
+require('./jobs/message.scheduler');
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
