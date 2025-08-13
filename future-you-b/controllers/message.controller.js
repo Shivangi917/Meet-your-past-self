@@ -1,4 +1,4 @@
-const Msg = require('../models/message');
+const Msg = require('../models/message.model');
 
 exports.scheduleMessage = async (req, res) => {
   const { message, email, scheduledDate } = req.body;

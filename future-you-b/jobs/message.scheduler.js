@@ -1,5 +1,5 @@
 const cron = require('node-cron');
-const Msg = require('../models/message');
+const Msg = require('../models/message.model');
 const transporter = require('../config/email');
 
 cron.schedule('* * * * *', async () => {
