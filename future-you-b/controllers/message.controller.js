@@ -1,15 +1,15 @@
-const Data = require('../models/data');
+const Msg = require('../models/message');
 
 exports.scheduleMessage = async (req, res) => {
   const { message, email, scheduledDate } = req.body;
 
   try {
-    const newData = new Data({
+    const newMsg = new Msg({
       message,
       email,
       scheduledDate: new Date(scheduledDate),
     });
-    await newData.save();
+    await newMsg.save();
 
     res.status(200).json({ message: 'Email scheduled successfully!' });
   } catch (error) {

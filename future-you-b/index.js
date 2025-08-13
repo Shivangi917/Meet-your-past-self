@@ -2,13 +2,15 @@ require('dotenv').config();
 const express = require('express');
 const connectDB = require('./config/db');
 const messageRoutes = require('./routes/message.route');
+const cors = require('cors');
 
 connectDB();
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
-app.use('/api/messages', messageRoutes);
+app.use('/api', messageRoutes);
 
 require('./jobs/message.scheduler');
 

@@ -1,10 +1,10 @@
 const cron = require('node-cron');
-const Data = require('../models/data');
+const Msg = require('../models/message');
 const transporter = require('../config/email');
 
 cron.schedule('* * * * *', async () => {
   const now = new Date();
-  const dueMessages = await Data.find({ scheduledDate: { $lte: now }, sent: false });
+  const dueMessages = await Msg.find({ scheduledDate: { $lte: now }, sent: false });
 
   for (let msg of dueMessages) {
     try {
@@ -16,8 +16,7 @@ cron.schedule('* * * * *', async () => {
       });
 
       msg.sent = true;
-      msg.status = "Sent";
-      await msg.save();
+      await msg.deleteOne();
 
       console.log(`Email sent to ${msg.email}`);
     } catch (err) {

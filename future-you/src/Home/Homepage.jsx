@@ -14,7 +14,7 @@ const Homepage = () => {
 
     const formData = { message, email, scheduledDate: sendDate }; 
     try {
-      const response = await axios.post('http://localhost:3000/schedule', formData);
+      const response = await axios.post('http://localhost:3000/api/messages', formData);
       console.log(response.data);
       setMessageScheduled(true);
       setMessage('');
