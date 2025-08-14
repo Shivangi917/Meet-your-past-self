@@ -4,6 +4,7 @@ import ProtectedRoute from './Components/ProtectedRoute';
 import Homepage from './Home/Homepage';
 import Login from './AuthPage/Login';
 import Signup from './AuthPage/Signup';
+import NotFound from './Components/NotFound';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );

@@ -3,10 +3,9 @@ import axios from 'axios';
 import { useAuth } from '../Context/AuthContext';
 
 const Homepage = () => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
 
   const [message, setMessage] = useState('');
-  const [email, setEmail] = useState(user?.email || '');
   const [sendDate, setSendDate] = useState('');
   const [messageScheduled, setMessageScheduled] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -14,22 +13,26 @@ const Homepage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (email !== user.email) {
-      alert('You can only send mail to your own registered email!');
+    if (!sendDate || new Date(sendDate) <= new Date()) {
+      alert('Please select a future date and time.');
       return;
     }
 
-    setLoading(true);
-    const formData = { message, email, scheduledDate: sendDate };
+    const formData = { 
+      message, 
+      email: user.email, 
+      scheduledDate: sendDate 
+    };
 
     try {
+      setLoading(true);
       const response = await axios.post('http://localhost:3000/api/messages', formData);
-      console.log(response.data);
       setMessageScheduled(true);
       setMessage('');
       setSendDate('');
+      setTimeout(() => setMessageScheduled(false), 5000);
     } catch (error) {
-      console.error('Error scheduling email', error);
+      alert("Failed to schedule the message.");
     } finally {
       setLoading(false);
     }
@@ -56,15 +59,6 @@ const Homepage = () => {
           />
 
           <input
-            type="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="bg-white/20 border border-white/30 p-4 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-pink-200 transition"
-            required
-          />
-
-          <input
             type="datetime-local"
             value={sendDate}
             onChange={(e) => setSendDate(e.target.value)}
@@ -86,6 +80,13 @@ const Homepage = () => {
             🎉 Your message has been scheduled successfully!
           </p>
         )}
+
+        <button 
+          onClick={logout} 
+          className="mt-6 text-white underline hover:text-pink-200"
+        >
+          Logout
+        </button>
       </div>
     </div>
   );
